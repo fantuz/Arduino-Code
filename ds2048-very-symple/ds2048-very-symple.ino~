@@ -1,0 +1,40 @@
+#include <WProgram.h>
+#include <DS2408.h>
+#include <OneWire.h>
+#include <string.h>
+
+DS2408  ds(2); //pin di collegamento 1 wire
+Device rele={0x29, 0xD6, 0xE3, 0x03, 0x00, 0x00, 0x00, 0x49}; //indirizzo chip 1wire
+byte accendi;
+bool A,B,C,D,E,F,G,H;
+
+void setup() {
+    accendi=0;
+    A=false;
+    B=false;
+    C=false;
+    D=false;
+    E=false;
+    F=false;
+    G=false;
+    H=false;
+    }
+    
+void loop() {
+  A=!A; //accende e spegne semplicemente il primo relè...
+        //basta impostare a true o false da A a H per accendere ogni canale
+
+  
+  accendi=0;
+  if (H) {accendi=0;} else {accendi=1;}
+  if (G) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  if (F) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  if (E) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  if (D) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  if (C) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  if (B) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  if (A) {accendi=accendi*2;} else {accendi=accendi*2+1;}
+  ds.set_state(rele, accendi);
+  delay(5000);
+  
+}
