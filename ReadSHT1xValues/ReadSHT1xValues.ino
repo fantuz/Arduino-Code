@@ -11,14 +11,14 @@
 #include <SHT1x.h>
 
 // Specify data and clock connections and instantiate SHT1x object
-#define dataPin  23
-#define clockPin 32
+#define dataPin  9
+#define clockPin 8
 SHT1x sht1x(dataPin, clockPin);
 
 void setup()
 {
    Serial.begin(9600); // Open serial connection to report values to host
-   Serial.println("Starting up");
+   Serial.println("Starting up...");
 }
 
 void loop()
@@ -40,6 +40,7 @@ void loop()
   Serial.print("F. Humidity: ");
   Serial.print(humidity);
   Serial.println("%");
+  Serial.println();
 
-  delay(2000);
+  delay(1000);
 }
